@@ -21,3 +21,5 @@ export interface CombinedDateAndTemperatureData {
     luxonDate: DateTime<true> | DateTime<false>
     temperature: number
 }
+
+export type RecommendedClothes = "Singlet" | "Onesie" | "SleepingBag"

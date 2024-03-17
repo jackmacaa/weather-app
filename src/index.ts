@@ -1,25 +1,20 @@
 import axios from 'axios'
-import { CombinedDateAndTemperatureData, WeatherApiResponse } from './types/index.js'
-import { DateTime } from 'luxon'
-import { combineDateAndTemperatureData, getMinOrMaxTemperature, getTempDataNightTime } from './lib.js'
+import { WeatherApiResponse } from './types/index.js'
+import { combineDateAndTemperatureData, getMinOrMaxTemperature, getRecommendedClothes, getTempDataNightTime } from './lib.js'
 
-// const weatherApi = 'https://api.open-meteo.com/v1/bom'
-// const elizabethParkCoords = 'latitude=-34.71&longitude=138.68'
+const weatherApi = 'https://api.open-meteo.com/v1/bom'
+const elizabethParkCoords = 'latitude=-34.71&longitude=138.68'
 
-// const url = `${weatherApi}?${elizabethParkCoords}&hourly=temperature_2m&timeformat=unixtime&timezone=Australia%2FSydney&forecast_days=2`
+const url = `${weatherApi}?${elizabethParkCoords}&hourly=temperature_2m&timeformat=unixtime&timezone=Australia%2FSydney&forecast_days=2`
 
-// const getWeather = async (url: string) => {
-//     const response = await axios.get<WeatherApiResponse>(url)
+const getWeather = async (url: string) => {
+    const response = await axios.get<WeatherApiResponse>(url)
 
-//     return response
-// }
+    return response
+}
 
-// const convertUnixTimeToReadible = (times: number[]): string[] => {
-//     return times.map((time) => time.)
-// }
-
-// const { data } = await getWeather(url)
-const data = {
+const { data } = await getWeather(url)
+const data2 = {
     latitude: -34.746094,
     longitude: 138.60352,
     generationtime_ms: 0.011086463928222656,
@@ -56,15 +51,14 @@ const data = {
 }
 //console.log(data)
 
-
-
 const dateAndTemperatureData = combineDateAndTemperatureData(data.hourly.time, data.hourly.temperature_2m)
-
-//console.log(dateAndTemperatureData)
-
 
 const nightTimeData = getTempDataNightTime(dateAndTemperatureData)
 
-console.log(getMinOrMaxTemperature(nightTimeData, 'MIN'))
+const minTemperature = getMinOrMaxTemperature(nightTimeData, 'MIN')
+console.log(minTemperature)
 
-console.log(getMinOrMaxTemperature(nightTimeData, 'MAX'))
+const maxTemperature = getMinOrMaxTemperature(nightTimeData, 'MAX')
+console.log(maxTemperature)
+
+console.log(getRecommendedClothes(minTemperature.temperature, maxTemperature.temperature))

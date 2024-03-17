@@ -1,5 +1,5 @@
 import { DateTime } from "luxon"
-import { CombinedDateAndTemperatureData } from "./types/index.js"
+import { CombinedDateAndTemperatureData, RecommendedClothes } from "./types/index.js"
 
 export const getMinOrMaxTemperature = (dateAndTemperatureData: CombinedDateAndTemperatureData[], type: "MIN" | "MAX"): CombinedDateAndTemperatureData => {
 
@@ -64,4 +64,14 @@ export const getTempDataNightTime = (dateAndTemperatureData: CombinedDateAndTemp
             return data
         }
     })
+}
+
+export const getRecommendedClothes = (minTemperature: number, maxTemperature: number): RecommendedClothes => {
+    if (minTemperature >= 20) {
+        return 'Singlet'
+    } else if (maxTemperature < 20 && minTemperature > 16) {
+        return 'Onesie'
+    } else {
+        return 'SleepingBag'
+    }
 }
