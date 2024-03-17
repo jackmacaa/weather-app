@@ -13,3 +13,4 @@ export interface WeatherApiResponse {
         temperature_2m: number[]
     }
 }
+
