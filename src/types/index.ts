@@ -1,3 +1,4 @@
+import { DateTime } from "luxon"
 
 export interface WeatherApiResponse {
     latitude: number,
@@ -14,3 +15,9 @@ export interface WeatherApiResponse {
     }
 }
 
+export interface CombinedDateAndTemperatureData {
+    unixTime: number,
+    date: Date,
+    luxonDate: DateTime<true> | DateTime<false>
+    temperature: number
+}
