@@ -5,11 +5,11 @@
         "node": "16.x"
     },
     "description": "",
-    "main": "index.js",
+    "main": "app.js",
     "type": "module",
     "scripts": {
         "start:build": "tsc -w",
-        "start:run": "nodemon build/index.js",
+        "start:run": "nodemon build/app.js",
         "start": "concurrently npm:start:*"
     },
     "author": "",
