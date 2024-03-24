@@ -1,5 +1,5 @@
 {
-    "name": "ts-sort",
+    "name": "weather-app",
     "version": "1.0.0",
     "engines": {
         "node": "16.x"
